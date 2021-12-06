@@ -1,4 +1,12 @@
-.DS_Store
-.Spotlight-V100
-.Trashes
+# ignore everything
+*
+
+# but do not ignore these files
+!.gitignore
+
+# do not ignore these directories and their subdirectories
+!nvim/
+!rectangle/
+
+# but do ignore these specific subdirectories
 nvim/plugged
