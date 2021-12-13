@@ -1,0 +1,5 @@
+[nodejs]
+disabled = true # Disable the package module, hiding it from the prompt
+
+[cmd_duration]
+min_time = 10_000  # Only show command duration over 10.000 milliseconds

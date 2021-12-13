@@ -1,13 +1,19 @@
 # ignore everything
-/**
+*
+# allow subfolders
+!*/
 
-# but do not ignore these files
+# do not ignore these files
 !.gitignore
+!install.sh
 
-# do not ignore these directories and their subdirectories
-!nvim/
-!rectangle/
-!kitty/
+
+# allow specific folders with all their subfolders
+!nvim/**
+!rectangle/**
+!kitty/**
+!zsh/**
+!starship/**
 
 # but do ignore these specific subdirectories
 nvim/plugged
