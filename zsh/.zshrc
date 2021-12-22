@@ -12,4 +12,3 @@ alias vim='nvim'
 export alias EDITOR='nvim'
 
 alias l='ls -la'
-
