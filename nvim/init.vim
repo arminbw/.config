@@ -17,6 +17,13 @@ set cursorline
 set nocompatible
 filetype off
 
+" use the MacOS clipboard
+" faster startup, see: https://github.com/neovim/neovim/issues/8631
+let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+set clipboard+=unnamedplus
+
+
+
 " plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
@@ -46,7 +53,7 @@ nnoremap <S-Tab>    :bprevious<CR>
 nnoremap <leader>b  :ls<CR>:b
 
 " NERDTree config
-map <silent> <C-n> :NERDTreeFocus<CR>
+map <silent> <S-n> :NERDTreeFocus<CR>
 map <leader>f :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
