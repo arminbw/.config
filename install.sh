@@ -1,6 +1,6 @@
 echo "Installing NeoVim…"
 brew install neovim
-echo "Installing NeoVim plugin manager and color scheme…"
+echo "Installing vim plugin manager (vim-plug) and color scheme…"
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "Installing Starship terminal prompt…"
@@ -12,4 +12,4 @@ brew cask install font-hack
 echo "Installing Kitty terminal emulator"
 brew install kitty
 echo "Please put 'source .config/zsh/.zshrc' into your .zshrc"
-echo "Please start vim and do :PluginInstall"
+echo "Please start vim and do :PluginInstall so vim-plug does its thing"

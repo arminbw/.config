@@ -22,14 +22,13 @@ filetype off
 let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
 set clipboard+=unnamedplus
 
-
-
 " plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 " Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 " Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jkramer/vim-checkbox'
 call plug#end()
 
 colorscheme gruvbox
@@ -53,7 +52,8 @@ nnoremap <S-Tab>    :bprevious<CR>
 nnoremap <leader>b  :ls<CR>:b
 
 " NERDTree config
-map <silent> <S-n> :NERDTreeFocus<CR>
+" map <silent> <C-n> :NERDTreeFocus<CR>
+map <C-n> :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
