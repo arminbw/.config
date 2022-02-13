@@ -11,4 +11,4 @@ alias vi='nvim'
 alias vim='nvim'
 export alias EDITOR='nvim'
 
-alias l='ls -la'
+alias l='ls -la --color=auto'
