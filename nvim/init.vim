@@ -39,8 +39,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-" Shortcuts
-let mapleader = " "
+" extra shortcuts
+" set leader key to <space>
+map <Space> <Leader>
 
 " Move between vim screens (and back and forth to NERDTree)
 nnoremap <C-h> <C-w>h
