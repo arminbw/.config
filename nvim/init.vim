@@ -46,6 +46,10 @@ map <Space> <Leader>
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" move up down one paragraph
+nnoremap } {
+nnoremap { }
+
 " Navigating buffers
 nnoremap <Tab>      :bnext<CR>:redraw<CR>:ls<CR>
 nnoremap <S-Tab>    :bprevious<CR>
