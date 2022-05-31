@@ -54,6 +54,10 @@ nnoremap { }
 nnoremap <Tab>      :bnext<CR>:redraw<CR>:ls<CR>
 nnoremap <S-Tab>    :bprevious<CR>
 nnoremap <leader>b  :ls<CR>:b
+# close current buffer without messing up the layout
+# (move to previous buffer, then delete the buffer we just moved away from)
+nmap <silent> <leader>q :bp\|bd #<CR>
+
 
 " NERDTree config
 " map <silent> <C-n> :NERDTreeFocus<CR>
