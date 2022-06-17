@@ -1,5 +1,3 @@
-" syntax on
-
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
@@ -26,7 +24,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 " Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
-" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
+Plug '/usr/local/opt/fzf'
 Plug 'jkramer/vim-checkbox'
 call plug#end()
 
@@ -57,6 +56,13 @@ nnoremap <leader>b  :ls<CR>:b
 " close current buffer without messing up the layout
 " (move to previous buffer, then delete the buffer we just moved away from)
 nmap <silent> <leader>q :bp\|bd #<CR>
+
+" Search for files using fzf
+nnoremap <silent> <C-f> :Files<CR>
+" Search inside files using fzf and rg
+nnoremap <silent> <Leader>f :Rg<CR>
+" use rg nstead of grep inside vim
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 
 " NERDTree config

@@ -11,5 +11,8 @@ brew tap homebrew/cask-fonts
 brew cask install font-hack
 echo "Installing Kitty terminal emulator"
 brew install kitty
+echo "Installing fzf and rg"
+brew install fzf
+brew install rg
 echo "Please put 'source .config/zsh/.zshrc' into your .zshrc"
-echo "Please start vim and do :PluginInstall so vim-plug does its thing"
+echo "Please start vim and do :PlugInstall so vim-plug does its thing"
