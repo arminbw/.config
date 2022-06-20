@@ -62,15 +62,18 @@ nmap <silent> <leader>q :bp\|bd #<CR>
 
 " Search for files using fzf
 nnoremap <silent> <C-f> :Files<CR>
-" Search inside files using fzf and rg
-nnoremap <silent> <Leader>f :Rg<CR>
 " use rg nstead of grep inside vim
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+" Search inside files using fzf and rg
+nnoremap <silent> <Leader>f :Rg<CR>
+" ignore filenames when searching within files
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 
 " NERDTree config
 " map <silent> <C-n> :NERDTreeFocus<CR>
 map <C-n> :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR>
+" map <leader>f :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.DS_Store']
