@@ -65,12 +65,24 @@ nnoremap <leader>b  :ls<CR>:b
 " (move to previous buffer, then delete the buffer we just moved away from)
 nmap <silent> <leader>q :bp\|bd #<CR>
 
+" Prevent FZF commands from opening in none modifiable buffers
+" https://github.com/junegunn/fzf/issues/453#issuecomment-700943343
+function! FZFOpen(cmd)
+    " If more than 1 window, and buffer is not modifiable or file type is
+    " NERD tree
+    if winnr('$') > 1 && (!&modifiable || &ft == 'nerdtree')
+        " Move one window to the right, then up
+        wincmd l
+    endif
+    exe a:cmd
+endfunction
+
 " Search for files using fzf
-nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-f> :call FZFOpen(":Files")<CR>
 " use rg nstead of grep inside vim
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 " Search inside files using fzf and rg
-nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <C-g> :call FZFOpen(":Rg")<CR>
 " ignore filenames when searching within files
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
@@ -87,16 +99,20 @@ let NERDTreeIgnore=['\.DS_Store']
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+" https://github.com/preservim/nerdtree
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " when directory is changed via :cd, change the Nerdtree root directory
 augroup DIRCHANGE
     au!
     autocmd DirChanged global :NERDTreeCWD
 augroup END
+
+" Find current file on NERDTree
+noremap <silent> <leader>nf :NERDTreeFind<CR>
 
