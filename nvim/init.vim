@@ -42,6 +42,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+" press ESC to clear search result highlighting
+nnoremap <esc> :noh<return><esc>
+
 " extra shortcuts
 " set leader key to <space>
 map <Space> <Leader>
