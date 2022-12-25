@@ -17,8 +17,6 @@ set nocompatible
 filetype off
 
 " use the MacOS clipboard
-" faster startup, see: https://github.com/neovim/neovim/issues/8631
-let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
 set clipboard+=unnamedplus
 
 " plugins
@@ -26,8 +24,9 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 " Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf.vim'
-Plug '/usr/local/opt/fzf'
+Plug '/opt/homebrew/opt/fzf' " use the homebrew install
+" for Intel Chip based MacOS use this path instead: Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim' " extra fzf-based commands and mappings
 Plug 'jkramer/vim-checkbox'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
@@ -44,16 +43,20 @@ endif
 
 " press ESC to clear search result highlighting
 nnoremap <esc> :noh<return><esc>
+" press ENTER to save (and exit visual mode)
+noremap <CR> :w<CR>
+vnoremap <CR> <ESC>:w<CR>
 
 " extra shortcuts
 " set leader key to <space>
 map <Space> <Leader>
 
+
 " Move between vim screens (and back and forth to NERDTree)
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" move up down one paragraph
+" move up down one paragraph (with GermanDev Keyboard Layout)
 nnoremap } {
 nnoremap { }
 
@@ -65,6 +68,8 @@ nnoremap <leader>b  :ls<CR>:b
 " (move to previous buffer, then delete the buffer we just moved away from)
 nmap <silent> <leader>q :bp\|bd #<CR>
 
+
+" FZF config
 " Prevent FZF commands from opening in none modifiable buffers
 " https://github.com/junegunn/fzf/issues/453#issuecomment-700943343
 function! FZFOpen(cmd)
