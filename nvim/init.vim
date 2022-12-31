@@ -1,6 +1,6 @@
 set noerrorbells
 set tabstop=2 softtabstop=2
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
 set smartindent
 set ignorecase
@@ -51,6 +51,9 @@ vnoremap <CR> <ESC>:w<CR>
 " set leader key to <space>
 map <Space> <Leader>
 
+" indent selected text using tab and shift-tab
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Move between vim screens (and back and forth to NERDTree)
 nnoremap <C-h> <C-w>h
