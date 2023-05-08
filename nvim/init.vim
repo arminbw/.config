@@ -31,6 +31,7 @@ Plug 'jkramer/vim-checkbox'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'markdown', 'html'] }
+Plug 'github/copilot.vim'
 call plug#end()
 
 colorscheme gruvbox
