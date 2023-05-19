@@ -125,3 +125,10 @@ augroup END
 " Find current file on NERDTree
 noremap <silent> <leader>nf :NERDTreeFind<CR>
 
+" Mappings for Github Copilot
+imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-h> copilot#Dismiss()
+imap <silent><script><expr> <C-k> copilot#Next()
+imap <silent><script><expr> <C-j> copilot#Previous()
+let g:copilot_no_tab_map = v:true
+
