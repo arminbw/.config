@@ -126,10 +126,17 @@ augroup END
 " Find current file on NERDTree
 noremap <silent> <leader>nf :NERDTreeFind<CR>
 
-" Mappings for Github Copilot
+" Mappings for Github Copilot (deactivated)
 " imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 " imap <silent><script><expr> <C-h> copilot#Dismiss()
 " imap <silent><script><expr> <C-k> copilot#Next()
 " imap <silent><script><expr> <C-j> copilot#Previous()
 " let g:copilot_no_tab_map = v:true
 
+" Kicknvim config (kickassembly)
+au BufRead,BufNewFile *.asm set filetype=kickass
+lua require("kicknvim_config")
+nnoremap <leader>ka :KickAssemble<CR>
+nnoremap <leader>kr :KickRun<CR>
+nnoremap <leader>km :KickMan<CR>
+nnoremap <leader>kl :KickLibs<CR>
