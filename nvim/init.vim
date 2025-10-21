@@ -32,6 +32,7 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'markdown', 'html'] }
 Plug 'IstiCusi/kicknvim'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
 " Plug 'github/copilot.vim'
 call plug#end()
 
@@ -125,6 +126,25 @@ augroup END
 
 " Find current file on NERDTree
 noremap <silent> <leader>nf :NERDTreeFind<CR>
+
+
+" Check if NERDTree is open
+function! IsNERDTreeOpen()
+  return !empty(filter(range(1, winnr('$')),
+        \ 'getbufvar(winbufnr(v:val), "&filetype") ==# "nerdtree"'))
+endfunction
+
+" Call NERDTreeFind if NERDTree is active, current buffer contains a
+" modifiable file, and we're not in vimdiff and return to focus to previous
+" window
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    :NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+autocmd BufEnter * call SyncTree()
 
 " Mappings for Github Copilot (deactivated)
 " imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
