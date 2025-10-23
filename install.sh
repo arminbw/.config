@@ -1,3 +1,5 @@
+echo "Installing some basic terminal tools…"
+brew install fd
 echo "Installing NeoVim…"
 brew install neovim
 echo "Installing vim plugin manager (vim-plug) and color scheme…"

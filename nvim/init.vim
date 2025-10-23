@@ -76,6 +76,8 @@ nmap <silent> <leader>q :bp\|bd #<CR>
 
 
 " FZF config
+" instead of find use fd which respects .gitignore
+let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --exclude .git'
 " Prevent FZF commands from opening in none modifiable buffers
 " https://github.com/junegunn/fzf/issues/453#issuecomment-700943343
 function! FZFOpen(cmd)
