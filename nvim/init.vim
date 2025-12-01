@@ -67,12 +67,27 @@ nnoremap } {
 nnoremap { }
 
 " Navigating buffers
-nnoremap <Tab>      :bnext<CR>:redraw<CR>:ls<CR>
+" nnoremap <Tab>      :bnext<CR>:redraw<CR>:ls<CR>
 nnoremap <S-Tab>    :bprevious<CR>
 nnoremap <leader>b  :ls<CR>:b
 " close current buffer without messing up the layout
 " (move to previous buffer, then delete the buffer we just moved away from)
 nmap <silent> <leader>q :bp\|bd #<CR>
+
+" do not change the buffer when in NERD_tree window
+nnoremap <Tab> :call TabCycleBuffers()<CR>
+
+function! TabCycleBuffers()
+    if bufname('%') =~# 'NERD_tree_tab_\d\+'
+        let l:right = winnr() + 1
+        let l:cur = winnr()
+        execute l:right . 'wincmd w'
+        bnext
+        execute l:cur . 'wincmd w'
+    else
+        bnext
+    endif
+endfunction
 
 
 " FZF config
@@ -107,15 +122,11 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.DS_Store']
+let NERDTreeWinPos = "left"
+let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeHijackOpenSplit = 0
+let g:NERDTreeQuitOnOpen = 0
 
-" Start NERDTree. If a file is specified, move the cursor to its window.
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-" https://github.com/preservim/nerdtree
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
